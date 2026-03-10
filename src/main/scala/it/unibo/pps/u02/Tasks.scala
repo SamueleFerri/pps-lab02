@@ -78,4 +78,20 @@ object Tasks {
       reverse(num, 0)
 
     //println(reverseNumber(12345))
+
+    enum Expr:
+      case Literal(n: Int)
+      case Add(subExpr1: Expr, subExpr2: Expr)
+      case Multiply(subExpr1: Expr, subExpr2: Expr)
+
+    object Expr:
+      def evaluate(expr: Expr): Int = expr match
+        case Literal(n) => n
+        case Add(subExpr1, subExpr2) => evaluate(subExpr1) + evaluate(subExpr2)
+        case Multiply(subExpr1, subExpr2) => evaluate(subExpr1) * evaluate(subExpr2)
+      def show(expr: Expr): String = expr match
+        case Literal(n) => n.toString
+        case Add(subExpr1, subExpr2) => "(" + show(subExpr1) + " + " + show(subExpr2) + ")"
+        case Multiply(subExpr1, subExpr2) => "(" + show(subExpr1) + " * " + show(subExpr2) + ")"
+
 }
