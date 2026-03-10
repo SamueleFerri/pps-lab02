@@ -29,3 +29,13 @@ class OptionalIntTest:
   @Test def mapIntShouldNotBeEmpty(): Unit =
     val nonEmpty = OptionalInt.mapInt(OptionalInt.Just(5), (_ + 1))
     assertEquals(OptionalInt.Just(6), nonEmpty)
+
+  @Test def filterShouldBeEmpty(): Unit =
+    val empty1 = OptionalInt.filter(OptionalInt.Empty(), (_ > 2))
+    val empty2 = OptionalInt.filter(OptionalInt.Just(5), (_ > 8))
+    assertTrue(OptionalInt.isEmpty(empty1))
+    assertTrue(OptionalInt.isEmpty(empty2))
+
+  @Test def filterShouldNotBeEmpty(): Unit =
+    val notEmpty = OptionalInt.filter(OptionalInt.Just(5), (_ > 2))
+    assertEquals(OptionalInt.Just(5), notEmpty)
