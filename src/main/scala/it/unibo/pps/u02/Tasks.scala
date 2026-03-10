@@ -69,4 +69,13 @@ object Tasks {
       power(base, exponent, 1)
 
     //println((powerTail(2, 3), powerTail(5, 2)))
+    //Create a function to reverse the digits of an integer using recursion
+    def reverseNumber(num: Int): Int =
+      @annotation.tailrec
+      def reverse(num: Int, acc: Int): Int = num match
+        case n if n / 10 == 0 => acc * 10 + n
+        case _ => reverse(num / 10, acc * 10 + num % 10)
+      reverse(num, 0)
+
+    //println(reverseNumber(12345))
 }
